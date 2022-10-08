@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="vecchio.png">
+<SubTexture name="vecchio Up0000" x="0" y="953" width="516" height="926" frameX="0" frameY="0" frameWidth="516" frameHeight="926" />
+<SubTexture name="vecchio right0000" x="539" y="0" width="536" height="944" frameX="0" frameY="0" frameWidth="536" frameHeight="944" />
+<SubTexture name="vecchio down0000" x="0" y="0" width="539" height="953" frameX="0" frameY="0" frameWidth="539" frameHeight="953" />
+<SubTexture name="vecchio idle0000" x="1075" y="0" width="529" height="941" frameX="0" frameY="0" frameWidth="529" frameHeight="941" />
+<SubTexture name="vecchio left0000" x="1604" y="0" width="523" height="931" frameX="0" frameY="0" frameWidth="523" frameHeight="931" />
+</TextureAtlas>
