@@ -33,6 +33,8 @@ class OutdatedSubState extends MusicBeatState
 		bg.scale.y *= 1.55;
 		bg.screenCenter();
 		add(bg);
+
+		/*
 		
 		var kadeLogo:FlxSprite = new FlxSprite(FlxG.width, 0).loadGraphic(Paths.image('KadeEngineLogo'));
 		kadeLogo.scale.y = 0.3;
@@ -41,6 +43,8 @@ class OutdatedSubState extends MusicBeatState
 		kadeLogo.y -= 180;
 		kadeLogo.alpha = 0.8;
 		add(kadeLogo);
+
+		*/
 		
 		var txt:FlxText = new FlxText(0, 0, FlxG.width,
 			"Your Kade Engine is outdated!\nYou are on "

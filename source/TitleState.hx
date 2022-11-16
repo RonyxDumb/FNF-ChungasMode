@@ -76,18 +76,10 @@ class TitleState extends MusicBeatState
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
-		// DEBUG BULLSHIT
 
 		super.create();
 
-		// NGio.noLogin(APIStuff.API);
-
-		#if ng
-		//var ng:NGio = new NGio(APIStuff.API, APIStuff.EncKey);
-		//trace('NEWGROUNDS LOL');
-		#end
-
-		FlxG.save.bind('changasfunk', 'teamistantink');
+	
 
 		KadeEngineData.initSave();
 
@@ -189,9 +181,9 @@ class TitleState extends MusicBeatState
 		// titleText.screenCenter(X);
 		add(titleText);
 
-		var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
-		logo.screenCenter();
-		logo.antialiasing = true;
+		//var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
+		//logo.screenCenter();
+		//logo.antialiasing = true;
 		// add(logo);
 
 		// FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
@@ -277,11 +269,6 @@ class TitleState extends MusicBeatState
 		{
 			if (gamepad.justPressed.START)
 				pressedEnter = true;
-
-			#if switch
-			if (gamepad.justPressed.B)
-				pressedEnter = true;
-			#end
 		}
 
 		if (pressedEnter && !transitioning && skippedIntro)
@@ -292,7 +279,7 @@ class TitleState extends MusicBeatState
 			// If it's Friday according to da clock
 			//if (Date.now().getDay() == 5)
 			//	NGio.unlockMedal(61034);
-			//fnf codind is pure shit
+			//fnf coding is pure shit
 			#end
 
 			if (FlxG.save.data.flashing)
@@ -308,7 +295,7 @@ class TitleState extends MusicBeatState
 
 			new FlxTimer().start(2, function(tmr:FlxTimer)
 			{
-				// Get current version of Kade Engine
+				// Get current version of Kade Engine (no more exist btw).
 				
 				var http = new haxe.Http("https://raw.githubusercontent.com/KadeDev/Kade-Engine/master/version.downloadMe");
 				var returnedData:Array<String> = [];
@@ -416,7 +403,7 @@ class TitleState extends MusicBeatState
 					addMoreText('Teamistantink');
 				else
 				{
-					addMoreText('Conad');
+					addMoreText('Funkin');
 					ngSpr.visible = true;
 				}
 			// credTextShit.text += '\nNewgrounds';

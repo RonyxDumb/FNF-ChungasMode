@@ -206,6 +206,10 @@ class FreeplayState extends MusicBeatState
 
 		if (accepted)
 		{
+
+			//FlxG.sound.play(Paths.sound('confirmMenu'), 0.4);
+			FlxG.sound.play(Paths.sound('confirmMenu'));
+
 			var poop:String = Highscore.formatSong(StringTools.replace(songs[curSelected].songName," ", "-").toLowerCase(), curDifficulty);
 
 			trace(poop);
