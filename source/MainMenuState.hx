@@ -171,7 +171,7 @@ class MainMenuState extends MusicBeatState
 			{
 				if (optionShit[curSelected] == 'donate')
 				{
-					//FlxG.switchState(new XDState());
+					//FlxG.switchState(new XDState()); // Damn this bullshit didnt work. damnnnnnnn
 					fancyOpenURL("https://www.kickstarter.com/projects/funkin/friday-night-funkin-the-full-ass-game");
 				}
 				else

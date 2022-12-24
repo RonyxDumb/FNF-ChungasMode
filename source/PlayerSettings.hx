@@ -30,8 +30,6 @@ class PlayerSettings
 	public var controls:Controls;
 	#end
 
-	// public var avatar:Player;
-	// public var camera(get, never):PlayCamera;
 
 	function new(id, scheme)
 	{

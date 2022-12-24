@@ -21,7 +21,7 @@ class PauseSubState extends MusicBeatSubstate
 {
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
 
-	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Exit to menu'];
+	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Exit to menu', 'Why Menu'];
 	var curSelected:Int = 0;
 
 	var pauseMusic:FlxSound;
@@ -47,14 +47,14 @@ class PauseSubState extends MusicBeatSubstate
 		var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
 		levelInfo.text += PlayState.SONG.song;
 		levelInfo.scrollFactor.set();
-		levelInfo.setFormat(Paths.font("Bronx.otf"), 32);
+		levelInfo.setFormat(Paths.font("vcr.otf"), 32);
 		levelInfo.updateHitbox();
 		add(levelInfo);
 
 		var levelDifficulty:FlxText = new FlxText(20, 15 + 32, 0, "", 32);
 		levelDifficulty.text += CoolUtil.difficultyString();
 		levelDifficulty.scrollFactor.set();
-		levelDifficulty.setFormat(Paths.font('Bronx.otf'), 32);
+		levelDifficulty.setFormat(Paths.font('vcr.otf'), 32);
 		levelDifficulty.updateHitbox();
 		add(levelDifficulty);
 
@@ -72,7 +72,7 @@ class PauseSubState extends MusicBeatSubstate
 		add(grpMenuShit);
 		perSongOffset = new FlxText(5, FlxG.height - 18, 0, "Additive Offset (Left, Right): " + PlayState.songOffset + " - Description - " + 'Adds value to global offset, per song.', 12);
 		perSongOffset.scrollFactor.set();
-		perSongOffset.setFormat("Bronx", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		perSongOffset.setFormat("VCR", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		
 		#if cpp
 			add(perSongOffset);
@@ -190,7 +190,8 @@ class PauseSubState extends MusicBeatSubstate
 					FlxG.resetState();
 				case "Lubamas sa menu":
 					FlxG.switchState(new MainMenuState());
-					
+				case "Why Menu":
+					FlxG.switchState(new WhyMenuState());	
 				case "Resume":
 					close();
 				case "Restart Song":

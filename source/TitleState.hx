@@ -61,8 +61,6 @@ class TitleState extends MusicBeatState
 			trace("Loaded " + openfl.Assets.getLibrary("default").assetsLoaded + " assets (DEFAULT)");
 		}
 		
-        //db_ss(ass,lol)
-      
 		PlayerSettings.init();
 
 		#if windows
@@ -87,9 +85,6 @@ class TitleState extends MusicBeatState
 
 		if (FlxG.save.data.weekUnlocked != null)
 		{
-			// FIX LATER!!!
-			// WEEK UNLOCK PROGRESSION!!
-			// StoryMenuState.weekUnlocked = FlxG.save.data.weekUnlocked;
 
 			if (StoryMenuState.weekUnlocked.length < 4)
 				StoryMenuState.weekUnlocked.insert(0, true);
@@ -132,14 +127,6 @@ class TitleState extends MusicBeatState
 			transIn = FlxTransitionableState.defaultTransIn;
 			transOut = FlxTransitionableState.defaultTransOut;
 
-			// HAD TO MODIFY SOME BACKEND SHIT
-			// IF THIS PR IS HERE IF ITS ACCEPTED UR GOOD TO GO
-			// https://github.com/HaxeFlixel/flixel-addons/pull/348
-
-			// var music:FlxSound = new FlxSound();
-			// music.loadStream(Paths.music('freakyMenu'));
-			// FlxG.sound.list.add(music);
-			// music.play();
 			FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 
 			FlxG.sound.music.fadeIn(4, 0, 0.7);
@@ -180,14 +167,6 @@ class TitleState extends MusicBeatState
 		titleText.updateHitbox();
 		// titleText.screenCenter(X);
 		add(titleText);
-
-		//var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
-		//logo.screenCenter();
-		//logo.antialiasing = true;
-		// add(logo);
-
-		// FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
-		// FlxTween.tween(logo, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
 
 		credGroup = new FlxGroup();
 		add(credGroup);
@@ -271,15 +250,26 @@ class TitleState extends MusicBeatState
 				pressedEnter = true;
 		}
 
+		// portà servire a scuola quando non ho PowerPoint?
+		// chissà, lo usero per il 9/01/2023
+
+		if (controls.BACK)
+		{
+			//FlxG.switchState(new FreeplayState());
+			FlxG.switchState(new WhyMenuState());
+		}
+
+	/*	if (controls.UP)
+		{
+			FlxG.switchState(new ChartingState());
+		} */ //Broken :/
+
+
 		if (pressedEnter && !transitioning && skippedIntro)
 		{
 			#if (!switch && newgrounds)
 			//NGio.unlockMedal(60960);
-
-			// If it's Friday according to da clock
-			//if (Date.now().getDay() == 5)
-			//	NGio.unlockMedal(61034);
-			//fnf coding is pure shit
+			// unlocking Clock
 			#end
 
 			if (FlxG.save.data.flashing)
@@ -289,42 +279,17 @@ class TitleState extends MusicBeatState
 			FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 
 			transitioning = true;
-			// FlxG.sound.music.stop();
+
 
 			MainMenuState.firstStart = true;
 
-			new FlxTimer().start(2, function(tmr:FlxTimer)
+			new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
-				// Get current version of Kade Engine (no more exist btw).
-				
-				var http = new haxe.Http("https://raw.githubusercontent.com/KadeDev/Kade-Engine/master/version.downloadMe");
-				var returnedData:Array<String> = [];
-				
-				http.onData = function (data:String)
-				{
-					returnedData[0] = data.substring(0, data.indexOf(';'));
-					returnedData[1] = data.substring(data.indexOf('-'), data.length);
-				  	/*if (!MainMenuState.kadeEngineVer.contains(returnedData[0].trim()) && !OutdatedSubState.leftState && MainMenuState.nightly == "")
-					{
-						trace('outdated lmao! ' + returnedData[0] + ' != ' + MainMenuState.kadeEngineVer);
-						OutdatedSubState.needVer = returnedData[0];
-						OutdatedSubState.currChanges = returnedData[1];
-						FlxG.switchState(new OutdatedSubState());
-					}
-					else*/
-					{
-						FlxG.switchState(new MainMenuState());
-					}
-				}
-				
-				http.onError = function (error) {
-				  trace('error: $error');
-				  FlxG.switchState(new MainMenuState()); // fail but we go anyway
-				}
-				
-				http.request();
-			});
-			// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
+				FlxG.switchState(new MainMenuState());
+				// fatta della pulizia, c'era troppa roba inutilizzata
+				// Rip al "Rileva VER" di Kade Engine :(
+			}); 
+
 		}
 
 		if (pressedEnter && !skippedIntro && initialized)
@@ -383,16 +348,13 @@ class TitleState extends MusicBeatState
 		{
 			case 1:
 				createCoolText(['Teamistantink', 'ronyx', 'fragolo', 'itsjade']);
-			// credTextShit.visible = true;
+
 			case 3:
 				addMoreText('present');
-			// credTextShit.text += '\npresent...';
-			// credTextShit.addText();
+
 			case 4:
 				deleteCoolText();
-			// credTextShit.visible = false;
-			// credTextShit.text = 'In association \nwith';
-			// credTextShit.screenCenter();
+
 			case 5:
 				if (Main.watermarks)
 					createCoolText(['Everthing', 'by']);
@@ -406,33 +368,28 @@ class TitleState extends MusicBeatState
 					addMoreText('Funkin');
 					ngSpr.visible = true;
 				}
-			// credTextShit.text += '\nNewgrounds';
+	
 			case 8:
 				deleteCoolText();
 				ngSpr.visible = false;
-			// credTextShit.visible = false;
-
-			// credTextShit.text = 'Shoutouts Tom Fulp';
-			// credTextShit.screenCenter();
+		
 			case 9:
 				createCoolText([curWacky[0]]);
-			// credTextShit.visible = true;
+			
 			case 11:
 				addMoreText(curWacky[1]);
-			// credTextShit.text += '\nlmao';
+			
 			case 12:
 				deleteCoolText();
-			// credTextShit.visible = false;
-			// credTextShit.text = "Friday";
-			// credTextShit.screenCenter();
+			
 			case 13:
 				addMoreText('FNF');
-			// credTextShit.visible = true;
+			
 			case 14:
 				addMoreText('Chungas');
-			// credTextShit.text += '\nNight';
+			
 			case 15:
-				addMoreText('Mode'); // credTextShit.text += '\nFunkin';
+				addMoreText('Mode'); 
 
 			case 16:
 				skipIntro();
