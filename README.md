@@ -1,9 +1,5 @@
 # FNF-ChungasMode
-
-Una mod di Friday Night Funkin' ![ico](art/icon32.png)
-
-An Friday Night Funkin' mod
-
+An Friday Night Funkin' mod ![ico](art/icon32.png)
 # Team Istantink 
 - Ronyx (programmer)
 - Fragolo_69 (idea)
